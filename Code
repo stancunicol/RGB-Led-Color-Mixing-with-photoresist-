@@ -1,0 +1,36 @@
+// C++ code
+//
+int sensorValue0 = 0;
+int sensorValue1 = 0;
+int sensorValue2 = 0;
+int sensorLight = 0;
+
+void setup()
+{
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+}
+
+void loop()
+{
+  sensorValue0 = analogRead(A0);
+  sensorValue1 = analogRead(A1);
+  sensorValue2 = analogRead(A2);
+  sensorLight = analogRead(A3);
+  
+  int redValue = map(sensorValue0, 0, 1023, 0, 255);
+  int greenValue = map(sensorValue1, 0, 1023, 0, 255);
+  int blueValue = map(sensorValue2, 0, 1023, 0, 255);
+  
+  int delayTime = map(sensorLight, 0, 1023, 50, 2000);
+  
+  analogWrite(11, redValue);
+  analogWrite(10, greenValue);
+  analogWrite(9, blueValue);
+  delay(1000);
+  analogWrite(11, 255);
+  analogWrite(10, 255);
+  analogWrite(9, 102);
+  delay(delayTime);
+}
